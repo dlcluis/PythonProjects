@@ -6,7 +6,7 @@
 streamsofincome= dict()
 
 def getincomestreaminfo():
-    job = input("What Job: " )
+    job = input("What Job: " ).capitalize()
 
 #   TAX
 
@@ -22,6 +22,8 @@ def getincomestreaminfo():
 ##  Type of Pay
 
     typeofpay=input("Is it Salary or Hourly ? ").upper()
+
+## Salary
     if typeofpay == "SALARY":
         salary= input("Whats the Gross Salary ? ")
         while salary.isdigit() == False:
@@ -29,12 +31,14 @@ def getincomestreaminfo():
             salary= input("Whats the Gross Salary ? ")
         else:
             salary= int(salary)
-            netincome(salary,tax)
+            trueincome=netincome(salary,tax)
 
+## Commission
     if typeofpay == "COMMISSION":
         commission = input("Whats the Year to Date Commission ? ")
-        netincome(commission,tax)
-    else:
+        trueincome=netincome(commission,tax)
+## Hourly
+    if typeofpay == "HOURLY":
         hourly=input("Whats the Hourly Rate ? ")
         while hourly.isdigit() == False:
             print("opps not a number try again")
@@ -48,11 +52,10 @@ def getincomestreaminfo():
             monthhours=input("What are your Total Monthly Hours ?")
         else:
             monthhours = int(monthhours)
-
         income= hourly*monthhours
-        netincome(income,tax)
+        trueincome=netincome(income,tax)
 
-
+    streamsofincome[job]= trueincome
 ##  Another Stream ?
     anotherstream= input("Do you have another stream of income ?").upper()
     if anotherstream == "Y":
@@ -61,11 +64,12 @@ def getincomestreaminfo():
         displayincomeinfo(streamsofincome)
 
 
-# FIX TAXRATE TURN TO PERCENTAGE EXAMPLE 10 TO 0.10
+# FIX : turn income to string and show dollar sign
 def netincome(income,taxrate):
-    print(income,taxrate)
+    taxrate= taxrate/100
     trueincome= income - (income*taxrate)
-    print(trueincome)
+    trueincome= "$ " + str(trueincome)
+    return trueincome
 
 def displayincomeinfo(jobs):
     print(jobs)
