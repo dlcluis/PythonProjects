@@ -17,7 +17,6 @@ def getincomestreaminfo():
         tax= (input("What is your tax withholding rate ? "))
     else:
         tax=int(tax)
-        print(type(tax))
 
 ##  Type of Pay
 
