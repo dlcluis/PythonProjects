@@ -75,12 +75,13 @@ def netincome(income,taxrate):
 
 # fix on jobs every value is a string convert it to integer here
 def displayincomeinfo(jobs):
-    print(jobs)
-    print('Total Income')
+    for i in jobs:
+        print(i.capitalize() + ': '+jobs[i])
     totalincome= list(jobs.values())
     totalincome = [float(i.strip('$')) for i in totalincome]
     totalincome= sum(totalincome)
     totalincome = '$' + str(totalincome)
+    print("Total Income: " + totalincome)
 
 def main():
     getincomestreaminfo()
