@@ -6,7 +6,7 @@
 streamsofincome= dict()
 
 def getincomestreaminfo():
-    job = input("What Job: " ).capitalize()
+    job = input("What Job Do You Have: " ).capitalize()
 
 #   TAX
 
